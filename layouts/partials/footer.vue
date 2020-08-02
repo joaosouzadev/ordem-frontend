@@ -2,16 +2,16 @@
     <footer class="fixed-bottom">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="footer-links font-12 fw-300;">
                         <a href="#">Privacy</a>
                         <span>/</span>
                         <a href="#">Terms and Conditions</a>
                     </div>
-                </div>
-                <div class="col-md-4 text-center">
+                </div> -->
+                <div class="col-md-12 text-center">
                     <p class="font-14 fw-300">
-                        © 2018 Project. All rights reserved.
+                        © 2020. Todos os direitos reservados.
                     </p>
                 </div>
                 <div class="col-md-4 text-right">

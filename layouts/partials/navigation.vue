@@ -5,7 +5,7 @@
                 class="navbar-brand text-uppercase fw-500"
                 href="#"
                 title="Project Name"
-                >DesignHouse</nuxt-link>
+                >MADAMUZ</nuxt-link>
             <button
                 class="navbar-toggler mr-auto"
                 type="button"
@@ -17,42 +17,21 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <template v-if="$auth.loggedIn">
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav font-14 fw-300">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Shots">Designs</a>
+                        <nuxt-link to="/cliente" class="nav-link">Clientes</nuxt-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="Designers"
-                            > Designers </a
+                            > Ordens de Serviço </a
                         >
                     </li>
                 </ul>
-                <div class="header-search">
-                    <form action="" method="">
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                autocomplete="OFF"
-                                name="search"
-                                class="form-control text-white font-14 fw-300"
-                                placeholder="Search and hit enter..."
-                            />
-                            <div class="search-icon text-white">
-                                <!-- <i class="fas fa-search"></i> -->
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div
-                    class="upload-shot white-path font-14 fw-500 text-uppercase mr-auto"
-                >
-                    <a href="#" class="primary-bg-color text-white">
-                        <!-- <i class="fas fa-cloud-upload-alt"></i> -->
-                        Upload
-                    </a>
-                </div>
             </div>
+            </template>
 
             <!-- Before Login -->
             <template v-if="!$auth.loggedIn">
@@ -87,12 +66,9 @@
                                 alt="Neba Funwi-Gabga"
                             />
                             <div class="usr-info">
-                                <span class="user-name font-14 fw-500"
-                                    >John Doe</span
+                                <span class="user-name font-14 fw-500">{{$auth.user.name}}</span
                                 >
-                                <span class="user-deg font-10 fw-300"
-                                    >Sr. UI Designer</span
-                                >
+                                <!-- <span class="user-deg font-10 fw-300">Sr. UI Designer</span> -->
                                 <span class="down-chevron">
                                     <i class="fa fa-angle-down"></i>
                                 </span>

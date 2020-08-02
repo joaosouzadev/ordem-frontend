@@ -2,17 +2,17 @@
     <section class="authentication">
         <div class="auth-body">
             <h1 class="text-uppercase fw-500 mb-4 text-center font-22">
-                Criar conta
+                Editar Cliente
             </h1>
             <form class="auth-form" @submit.prevent="submit">
                 <alert-success :form="form">
-                    Enviamos um e-mail para você ativar sua conta.
+                    Cliente editado!
                 </alert-success>
                 <div class="form-group">
                     <base-input
                         :form="form"
-                        field="name"
-                        v-model="form.name"
+                        field="nome"
+                        v-model="form.nome"
                         placeholder="Nome"
                     ></base-input>
                 </div>
@@ -27,29 +27,15 @@
                 <div class="form-group">
                     <base-input
                         :form="form"
-                        field="email"
-                        inputType="password"
-                        v-model="form.password"
-                        placeholder="Senha"
-                    ></base-input>
-                </div>
-                <div class="form-group">
-                    <base-input
-                        :form="form"
-                        field="email"
-                        inputType="password"
-                        v-model="form.password_confirmation"
-                        placeholder="Confirme sua senha"
+                        field="telefone"
+                        v-model="form.telefone"
+                        placeholder="Telefone"
                     ></base-input>
                 </div>
                 
                 <div class="text-right">
-                    <base-button :loading="form.busy">Registrar</base-button>
+                    <base-button :loading="form.busy">Salvar Alterações</base-button>
                 </div>
-                <p class="font-14 fw-400 text-center mt-4">
-                    Já é registrado?
-                    <nuxt-link to="/login" class="color-blue" href="#">Faça login.</nuxt-link>
-                </p>
             </form>
         </div>
     </section>
@@ -58,28 +44,53 @@
 <script>
     
 export default {
-    middleware: ['guest'],
+    middleware: ['auth'],
     data() {
         return {
             form: this.$vform({
-                name: '',
+                nome: '',
                 email: '',
-                password: '',
-                password_confirmation: ''
+                telefone: '',
             })
         };
+    },
+
+    async asyncData({ $axios, params, error, redirect }) {
+        try {
+            const cliente = await $axios.get(`/clientes/${params.id}`);
+            console.log(cliente.data);
+            return { cliente: cliente.data };
+        } catch(err) {
+            if (err.response.status == 404) {
+                error({ statusCode: 404, message: 'Cliente não encontrado'})
+            } else {
+                error({ statusCode: 500, message: 'Erro de servidor'})
+            }
+        }
     },
 
     methods: {
         submit() {
             // console.log('submitting');
-            this.form.post(`/register`)
+            this.form.put(`/clientes/${this.$route.params.id}`)
                 .then(res => {
-                    this.form.reset();
+                    // this.form.reset();
                     console.log(res);
                 }).catch(error => {
                     console.log(error);
                 });
+        }
+    },
+
+    mounted() {
+        if (this.cliente) {
+            Object.keys(this.form).forEach(key => {
+                if (this.cliente.data.hasOwnProperty(key)) {
+                    this.form[key] = this.cliente.data[key];
+                } else {
+                    console.log('form nao possui ' + key);
+                }
+            });
         }
     }
 };

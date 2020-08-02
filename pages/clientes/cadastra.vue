@@ -2,17 +2,17 @@
     <section class="authentication">
         <div class="auth-body">
             <h1 class="text-uppercase fw-500 mb-4 text-center font-22">
-                Criar conta
+                Cadastrar Cliente
             </h1>
             <form class="auth-form" @submit.prevent="submit">
                 <alert-success :form="form">
-                    Enviamos um e-mail para você ativar sua conta.
+                    Cliente cadastrado!
                 </alert-success>
                 <div class="form-group">
                     <base-input
                         :form="form"
-                        field="name"
-                        v-model="form.name"
+                        field="nome"
+                        v-model="form.nome"
                         placeholder="Nome"
                     ></base-input>
                 </div>
@@ -27,29 +27,15 @@
                 <div class="form-group">
                     <base-input
                         :form="form"
-                        field="email"
-                        inputType="password"
-                        v-model="form.password"
-                        placeholder="Senha"
-                    ></base-input>
-                </div>
-                <div class="form-group">
-                    <base-input
-                        :form="form"
-                        field="email"
-                        inputType="password"
-                        v-model="form.password_confirmation"
-                        placeholder="Confirme sua senha"
+                        field="telefone"
+                        v-model="form.telefone"
+                        placeholder="Telefone"
                     ></base-input>
                 </div>
                 
                 <div class="text-right">
-                    <base-button :loading="form.busy">Registrar</base-button>
+                    <base-button :loading="form.busy">Cadastrar Cliente</base-button>
                 </div>
-                <p class="font-14 fw-400 text-center mt-4">
-                    Já é registrado?
-                    <nuxt-link to="/login" class="color-blue" href="#">Faça login.</nuxt-link>
-                </p>
             </form>
         </div>
     </section>
@@ -58,14 +44,13 @@
 <script>
     
 export default {
-    middleware: ['guest'],
+    middleware: ['auth'],
     data() {
         return {
             form: this.$vform({
-                name: '',
+                nome: '',
                 email: '',
-                password: '',
-                password_confirmation: ''
+                telefone: '',
             })
         };
     },
@@ -73,9 +58,12 @@ export default {
     methods: {
         submit() {
             // console.log('submitting');
-            this.form.post(`/register`)
+            this.form.post(`/clientes`)
                 .then(res => {
-                    this.form.reset();
+                    this.$router.push({
+                        name: 'cliente.editar',
+                        params: { id: res.data.id }
+                    });
                     console.log(res);
                 }).catch(error => {
                     console.log(error);

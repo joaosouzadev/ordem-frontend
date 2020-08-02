@@ -12,6 +12,8 @@ const routes = [
 	{ path: '/verification/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 	{ path: '/password/email', name: 'password.email', component: page('auth/password/reset_email.vue') },
 	{ path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/password_reset.vue') },
+	{ path: '/cliente', name: 'cliente.cadastrar', component: page('clientes/cadastra.vue') },
+	{ path: '/cliente/:id/editar', name: 'cliente.editar', component: page('clientes/editar.vue') },
 ];
 
 
