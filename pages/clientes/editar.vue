@@ -61,7 +61,7 @@ export default {
             console.log(cliente.data);
             return { cliente: cliente.data };
         } catch(err) {
-            if (err.response.status == 404) {
+            if (err.response.status == 404 || err.response.status == 403) {
                 error({ statusCode: 404, message: 'Cliente não encontrado'})
             } else {
                 error({ statusCode: 500, message: 'Erro de servidor'})

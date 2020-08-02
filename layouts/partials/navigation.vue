@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav font-14 fw-300">
                     <li class="nav-item active">
-                        <nuxt-link to="/cliente" class="nav-link">Clientes</nuxt-link>
+                        <nuxt-link to="/clientes" class="nav-link">Clientes</nuxt-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="Designers"
