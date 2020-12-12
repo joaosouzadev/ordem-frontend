@@ -25,9 +25,7 @@
                         <nuxt-link to="/clientes" class="nav-link">Clientes</nuxt-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Designers"
-                            > Ordens de Serviço </a
-                        >
+                        <nuxt-link to="/ordens" class="nav-link">Ordens</nuxt-link>
                     </li>
                 </ul>
             </div>

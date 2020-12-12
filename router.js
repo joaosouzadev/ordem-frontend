@@ -15,6 +15,9 @@ const routes = [
 	{ path: '/clientes', name: 'clientes.listar', component: page('clientes/listar.vue') },
 	{ path: '/clientes/cadastrar', name: 'clientes.cadastrar', component: page('clientes/cadastrar.vue') },
 	{ path: '/clientes/:id/editar', name: 'clientes.editar', component: page('clientes/editar.vue') },
+	{ path: '/ordens', name: 'ordens.listar', component: page('ordens/listar.vue') },
+	{ path: '/ordens/cadastrar', name: 'ordens.cadastrar', component: page('ordens/cadastrar.vue') },
+	{ path: '/ordens/:id/editar', name: 'ordens.editar', component: page('ordens/editar.vue') },
 ];
 
 
